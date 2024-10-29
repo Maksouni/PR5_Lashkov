@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HashPasswords;
+using PR5_Lashkov.Model;
 
 namespace PR5_Lashkov
 {
@@ -11,7 +12,14 @@ namespace PR5_Lashkov
     {
         static void Main(string[] args)
         {
-            Console.WriteLine();
+            DbConnector db = new DbConnector();
+
+            User user = db.GetUserById(1);
+            if (user != null )
+            {
+                Console.WriteLine($"id: {user.Id} \nlogin: {user.Login} \npassword: {user.Password} \nrole: {user.Role}");
+            }
+            Console.ReadKey();
         }
     }
 }

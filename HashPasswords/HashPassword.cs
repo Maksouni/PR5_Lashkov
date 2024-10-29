@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HashPasswords
 {
-    public class HashPassword
+    public static class HashPassword
     {
-        public string HashPass(string password)
+        public static string HashPass(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
