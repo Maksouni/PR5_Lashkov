@@ -23,8 +23,7 @@ namespace PR5_Lashkov.Model
                 try
                 {
                     con.Open();
-                    string query = $"select u.id, u.login, u.password, r.name as role from Users u " +
-                        $"join Roles r on u.role_id=r.id " +
+                    string query = $"select u.id, u.login, u.password, u.role_id from Users u " +
                         $"where u.id = {id};";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -36,7 +35,7 @@ namespace PR5_Lashkov.Model
                                     reader.GetInt32(0),
                                     reader.GetString(1),
                                     reader.GetString(2),
-                                    reader.GetString(3)
+                                    reader.GetInt32(3)
                                 );
                             }
                         }
@@ -45,6 +44,23 @@ namespace PR5_Lashkov.Model
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
             }
             return null;
+        }
+
+        public void AddUser(User user)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = $"insert into Users(login, password, role_id) values" +
+                    $"('{user.Login}', '{user.Password}', {user.RoleId})";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    } catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }
+            }
         }
     }
 }
