@@ -12,7 +12,6 @@ namespace PR5_Lashkov
     {
         static void Main(string[] args)
         {
-            DbConnector db = new DbConnector();
 
             Console.WriteLine("Add new user\n");
             bool continueAdding = true;
@@ -27,8 +26,7 @@ namespace PR5_Lashkov
                 Console.Write("Enter role id: ");
                 int roleId = Convert.ToInt32(Console.ReadLine());
 
-                User user = new User(1, login, password, roleId);
-                db.AddUser(user);
+
 
                 
                 while (true)
@@ -45,11 +43,6 @@ namespace PR5_Lashkov
                 
             }
 
-            //User user = db.GetUserById(1);
-            //if (user != null )
-            //{
-            //    Console.WriteLine($"id: {user.Id} \nlogin: {user.Login} \npassword: {user.Password} \nrole: {user.Role}");
-            //}
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
