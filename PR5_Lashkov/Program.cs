@@ -26,7 +26,13 @@ namespace PR5_Lashkov
                 Console.Write("Enter role id: ");
                 int roleId = Convert.ToInt32(Console.ReadLine());
 
-
+                Users user = new Users()
+                {
+                    login = login,
+                    password = password,
+                    role_id = roleId
+                };
+                Helper.CreateUser(user);
 
                 
                 while (true)

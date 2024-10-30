@@ -17,5 +17,11 @@ namespace PR5_Lashkov
                 _context = new DrinkFactoryEntities();
             return _context;
         }
+
+        public static void CreateUser(Users user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+        }
     }
 }
